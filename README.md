@@ -1,8 +1,18 @@
-# Lilygo T4-S3 with LVGL
+# Mark the Smart Bookmark
 
 ## Get started
 
-1. rename ```libraries``` folder to  ```lib```
-2. rename ```ui.ino``` file locatted in side ui folder  to ```main.cpp``` 
-3. rename ```ui``` folder to ```scr```
-4. open in in vs code using platformio compile and upload
+Frontend designed and made with Squareline Studio
+Backend written and compiled with PlatformIO
+
+Device:
+T-Display S3 AMOLED V2.0/Touch Version (Basic Version No Touch)
+
+Processor:
+ESP32-S3
+
+Display:
+240*536 Pixels RM67162
+
+Rotary Encoder:
+Adafruit I2C Stemma QT Rotary Encoder Breakout with NeoPixel
