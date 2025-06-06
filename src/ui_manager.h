@@ -21,4 +21,7 @@ const char* ui_get_selected_book_name(void);
 // Function to initialize the book roller with data from JSON
 bool ui_init_book_roller(void);
 
+// Initialize the starting page roller based on selected book
+bool ui_init_starting_page_roller(void);
+
 #endif // UI_MANAGER_H

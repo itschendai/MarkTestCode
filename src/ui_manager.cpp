@@ -121,6 +121,47 @@ bool ui_init_book_roller(void)
     return true;
 }
 
+bool ui_init_starting_page_roller(void)
+{
+    if (ui_StartingPageCount == NULL) {
+        Serial.println("ui_StartingPageCount is NULL, cannot initialize roller");
+        return false;
+    }
+
+    const Book* book = book_manager_get_book_by_name(selectedbookname);
+    if (book == nullptr) {
+        Serial.println("Selected book not found for starting page roller");
+        return false;
+    }
+
+    static char page_options[2048];
+    page_options[0] = '\0';
+
+    for (uint16_t i = 0; i <= book->totalPages; ++i) {
+        char buf[8];
+        sprintf(buf, "%u", i);
+        strcat(page_options, buf);
+        if (i < book->totalPages) {
+            strcat(page_options, "\n");
+        }
+    }
+
+    lv_roller_set_options(ui_StartingPageCount, page_options, LV_ROLLER_MODE_NORMAL);
+
+    uint16_t default_page = book->pagesRead;
+    if (default_page > book->totalPages) {
+        default_page = 0;
+    }
+    lv_roller_set_selected(ui_StartingPageCount, default_page, LV_ANIM_OFF);
+
+    Serial.print("Initialized start page roller for ");
+    Serial.print(selectedbookname);
+    Serial.print(" with total pages: ");
+    Serial.println(book->totalPages);
+
+    return true;
+}
+
 void ui_manager_init(void)
 {
     // Initialize UI from LVGL helper
@@ -153,6 +194,7 @@ void ui_handle_button_press(void)
         // Update selected book name before transitioning
         ui_update_selected_book_name();
         ui_sync_selected_book_name();
+        ui_init_starting_page_roller();
         lv_disp_load_scr(ui_SelectStartScreen);
     }
     else if (current_screen == ui_SelectStartScreen) {
