@@ -16,3 +16,13 @@ Display:
 
 Rotary Encoder:
 Adafruit I2C Stemma QT Rotary Encoder Breakout with NeoPixel
+
+## Setup
+
+Run `setup.sh` to install PlatformIO and the required libraries:
+
+```bash
+./setup.sh
+```
+
+This script installs PlatformIO using `pip` (if needed) and fetches all project dependencies defined in `platformio.ini`.
